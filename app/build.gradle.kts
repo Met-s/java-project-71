@@ -1,9 +1,13 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id("java")
     id("idea")
     id ("com.github.ben-manes.versions") version "0.52.0"
     application
     jacoco
+    checkstyle
 }
 
 group = "hexlet.code"
@@ -22,19 +26,28 @@ jacoco {
     reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
+checkstyle {
+    toolVersion = "10.12.4"
+}
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.0.0")
     implementation("org.junit.platform:junit-platform-console:1.0.0")
-
+    implementation ("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.commons:commons-lang3:3.18.0")
+    compileOnly("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 
 tasks.test {
     useJUnitPlatform()
     testLogging {
-        events ("passed", "skipped", "failed")
+        TestExceptionFormat.FULL
+        events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED,
+            TestLogEvent.SKIPPED)
+        showStandardStreams = true
     }
     finalizedBy(tasks.jacocoTestReport)
 }
@@ -42,7 +55,6 @@ tasks.test {
 tasks.jacocoTestReport {
     reports {
         xml.required = true
-        csv.required = true
         html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
     }
 }

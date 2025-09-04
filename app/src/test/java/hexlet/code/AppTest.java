@@ -25,9 +25,8 @@ public class AppTest {
     @DisplayName("'main' method works correctly")
     public void testMain() {
         App.main(null);
-        assertEquals("Hello, World!",output.toString(StandardCharsets.UTF_8).trim());
-
-
+        assertEquals("Hello, World!",
+                output.toString(StandardCharsets.UTF_8).trim());
     }
 
     @AfterEach
