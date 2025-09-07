@@ -1,5 +1,7 @@
 GR = ./gradlew
 .DEFAULT_GOAL := build-run
+COMMAND?=-h
+
 
 setup:
 	$(GR) wrapper --gradle-version 8.11
@@ -8,13 +10,15 @@ clean:
 	$(GR) clean
 
 build:
-	$(GR) clean build
+	$(GR) build
+
+clean-build: clean build
 
 install:
 	$(GR) clean install
 
 run-dist:
-	./build/install/app/bin/app
+	./build/install/app/bin/app $(COMMAND) "COMMAND=$(COMMAND)"
 
 run:
 	$(GR) run

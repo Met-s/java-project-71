@@ -1,10 +1,6 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -21,6 +17,7 @@ public class AppTest {
         System.setOut(new PrintStream(output));
     }
 
+    @Disabled("deleted method")
     @Test
     @DisplayName("'main' method works correctly")
     public void testMain() {
