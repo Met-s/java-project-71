@@ -1,6 +1,6 @@
 GR = ./gradlew
 .DEFAULT_GOAL := build-run
-COMMAND?=-h
+COMMAND?= -h
 
 
 setup:
@@ -18,7 +18,7 @@ install:
 	$(GR) clean install
 
 run-dist:
-	./build/install/app/bin/app $(COMMAND) "COMMAND=$(COMMAND)"
+	./build/install/app/bin/app $(COMMAND)
 
 run:
 	$(GR) run
@@ -40,5 +40,7 @@ build-run: build run
 
 jar:
 	gradle installDist
+
+jar-dist: clean-build jar run-dist
 
 .PHONY: build
