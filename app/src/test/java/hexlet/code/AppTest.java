@@ -51,6 +51,13 @@ public class AppTest {
         assertTrue(Files.exists(ReadFile.getPath(fileName)));
     }
 
+    @Test
+    @DisplayName("Reading a file")
+    public void testReadFile() throws Exception {
+        assertTrue(Files.exists(ReadFile.getPath("file1.json")));
+    }
+
+
 
     @Disabled("deleted method")
     @Test

@@ -31,13 +31,21 @@ checkstyle {
     toolVersion = "10.12.4"
 }
 
+
 sonar {
     properties {
         property("sonar.projectKey", "Met-s_java-project-71")
         property("sonar.organization", "met-s")
-        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
+
+//sonar {
+//    properties {
+//        property("sonar.projectKey", "Met-s_java-project-71")
+//        property("sonar.organization", "met-s")
+//        property("sonar.host.url", "https://sonarcloud.io")
+//    }
+//}
 
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
@@ -53,8 +61,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.17.2")
-    implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.20.2")
 }
 
 tasks.test {
