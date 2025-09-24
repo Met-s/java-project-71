@@ -9,6 +9,7 @@ plugins {
     application
     jacoco
     checkstyle
+//    alias(libs.plugins.sonarqube)
 }
 
 group = "hexlet.code"
@@ -31,21 +32,13 @@ checkstyle {
     toolVersion = "10.12.4"
 }
 
-
 sonar {
     properties {
         property("sonar.projectKey", "Met-s_java-project-71")
         property("sonar.organization", "met-s")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
-
-//sonar {
-//    properties {
-//        property("sonar.projectKey", "Met-s_java-project-71")
-//        property("sonar.organization", "met-s")
-//        property("sonar.host.url", "https://sonarcloud.io")
-//    }
-//}
 
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
@@ -55,14 +48,18 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.commons:commons-lang3:3.18.0")
 
-    compileOnly("org.projectlombok:lombok:1.18.20")
-    annotationProcessor("org.projectlombok:lombok:1.18.20")
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+//    implementation("org.springframework.boot:spring-boot:3.1.4")
 
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.20.2")
+    implementation("com.fasterxml.jackson" +
+            ".dataformat:jackson-dataformat-yaml:2.20.0")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:3.0-rc5")
+
 }
 
 tasks.test {

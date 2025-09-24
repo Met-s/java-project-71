@@ -1,12 +1,9 @@
-name: Java CI SonarQube
+name: Java CI
 
 on:
+  - push
+  - pull_request
 
-  push:
-    branches:
-      -main
-  pull_request:
-    types: [opened, synchronize, reopened]
 jobs:
   build:
     name: Build and analyze
@@ -42,4 +39,3 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonar --info
-
