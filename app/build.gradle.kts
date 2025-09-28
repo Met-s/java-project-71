@@ -36,6 +36,7 @@ sonar {
     properties {
         property("sonar.projectKey", "Met-s_java-project-71")
         property("sonar.organization", "met-s")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
