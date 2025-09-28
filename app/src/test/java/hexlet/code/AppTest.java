@@ -60,7 +60,7 @@ public class AppTest {
     @Test
     @DisplayName("Parser_ReadFile")
     public void testParserFile() throws Exception {
-        String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
+        String expected = "{follow=false, host=hexlet.io, proxy=123.234.53.22, timeout=50}";
         String actual = ReadFile.parser(relativePath).toString();
         assertEquals(expected, actual);
     }
