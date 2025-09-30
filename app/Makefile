@@ -43,4 +43,7 @@ jar:
 
 jar-dist: clean-build jar run-dist
 
+sonar:
+	$(GR) sonar
+
 .PHONY: build
