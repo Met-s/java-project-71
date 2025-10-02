@@ -52,8 +52,7 @@ public class App {
 //        int exitCode = new CommandLine(new MyApp()).execute(args);
 //        System.exit(exitCode);
 //----------------------------------
-        System.out.println(System.getenv("SONAR_TOKEN"));
-//----------------------------------
+
         String puth1 = "src/test/resources/file1.json";
         String puth2 = "src/test/resources/file2.json";
         var file1 = ReadFile.parser(puth1);
@@ -61,46 +60,9 @@ public class App {
 
         var file1Key = file1.keySet();
         var file2Key = file2.keySet();
-//        System.out.println(file1 + "\n" + file2);
+
         System.out.println(file1);
         System.out.println(file2);
-
-
-//        var names = file1Key.stream()
-//                .map()
-//                .sorted()
-//                .toList();
-//        names.forEach(s -> System.out.println(s + ": " + file1.get(s)));
-
-//        System.out.println(names);
-
-
-
-//        for (String key1 : file1.keySet()) {
-//            for (String key2 : file2.keySet()) {
-//                if (key1.equals(key2)) {
-//                    System.out.println("+ " + key1);
-//                } else{
-//                    System.out.println("- " + key1);
-//                }
-//            }
-//        }
-
-
-//        System.out.println(result1Key);
-
-//
-//        var result = result1Key.stream()
-//                .sorted()
-//                .toList();
-//        System.out.println(result);
-//                .forEach(System.out::println);
-
-
-//        result1Key.forEach(s -> System.out.println(s.charAt(0)));
-
-//        var result = result1.stream();
-
 
 
     }

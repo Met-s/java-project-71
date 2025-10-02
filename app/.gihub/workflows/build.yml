@@ -2,7 +2,6 @@ name: Java CI
 on:
   - push
   - pull_request
-
 jobs:
   build:
     name: Build and analyze
@@ -18,16 +17,21 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           fetch-depth: 0
+
       - name: Execute Gradle build
         run: ./gradlew build
       - name: Generate coverage report
+        working-directory: app
         run: make report
+
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
+          working-directory: app
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
