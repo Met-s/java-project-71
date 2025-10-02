@@ -40,14 +40,6 @@ sonar {
     }
 }
 
-//sonar {
-//    properties {
-//        property("sonar.projectKey", "Met-s_java-project-71")
-//        property("sonar.organization", "met-s")
-////        property("sonar.host.url", "https://sonarcloud.io")
-//    }
-//}
-
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
