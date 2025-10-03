@@ -41,6 +41,8 @@ class MyApp implements Callable<String> {
         var path2 = "src/test/resources/" + filepath2;
         String result = Diff.diff(path1, path2);
         System.out.println(path1);
+
+
         System.out.println(result);
 
 //        var file1Key = ReadFile.parser("src/test/resources/" + filepath1);
