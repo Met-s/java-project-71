@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Option;
@@ -35,11 +36,19 @@ class MyApp implements Callable<String> {
     String filepath2;
 
     @Override
-    public String call() {
-
-        String result = "Hello, World!";
+    public String call() throws Exception {
+        var path1 = "src/test/resources/" + filepath1;
+        var path2 = "src/test/resources/" + filepath2;
+        String result = Diff.diff(path1, path2);
+        System.out.println(path1);
         System.out.println(result);
 
+//        var file1Key = ReadFile.parser("src/test/resources/" + filepath1);
+//        var file2Key = ReadFile.parser("src/test/resources/" + filepath2);
+//        var file1 = ReadFile.parser(filepath1)
+//        System.out.println(filepath1);
+//
+//        System.out.println(file1Key + "\n" + file2Key);
         return result;
     }
 }
@@ -49,20 +58,24 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-//        int exitCode = new CommandLine(new MyApp()).execute(args);
-//        System.exit(exitCode);
+        int exitCode = new CommandLine(new MyApp()).execute(args);
+
+        System.exit(exitCode);
 //----------------------------------
+//
+//        String puth1 = "src/test/resources/file1.json";
+//        String puth2 = "src/test/resources/file2.json";
+//        var file1 = ReadFile.parser(puth1);
+//        var file2 = ReadFile.parser(puth2);
+//
+//        var file1Key = file1.keySet();
+//        var file2Key = file2.keySet();
+//
+//        System.out.println(file1);
+//        System.out.println(file2);
 
-        String puth1 = "src/test/resources/file1.json";
-        String puth2 = "src/test/resources/file2.json";
-        var file1 = ReadFile.parser(puth1);
-        var file2 = ReadFile.parser(puth2);
+//        make run-dist "src/test/resources/file1.json" "src/test/resources/file2.json"
 
-        var file1Key = file1.keySet();
-        var file2Key = file2.keySet();
-
-        System.out.println(file1);
-        System.out.println(file2);
 
 
     }
