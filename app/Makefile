@@ -1,4 +1,5 @@
 GR = ./gradlew
+COMMAND ?= -h
 
 
 setup:
