@@ -42,6 +42,9 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.junit.platform:junit-platform-console:1.13.1")
     implementation("org.apache.commons:commons-lang3:3.18.0")
+
+    implementation("info.picocli:picocli:4.7.7")
+    annotationProcessor("info.picocli:picocli-codegen:4.7.7")
 }
 
 tasks.test {
