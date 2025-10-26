@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("idea")
+    id ("org.sonarqube") version "7.0.1.6134"
     application
     checkstyle
     jacoco
@@ -24,6 +25,14 @@ checkstyle {
 jacoco {
     toolVersion = "0.8.13"
     reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
+sonar {
+    properties {
+        property ("sonar.projectKey", "Met-s_java-project-71")
+        property ("sonar.organization", "met-s")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 dependencies {
