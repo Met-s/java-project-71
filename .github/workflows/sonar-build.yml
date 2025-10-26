@@ -23,7 +23,6 @@ jobs:
       - name: Execute Gradle build
         working-directory: app
         run: |
-          ls -la
           ./gradlew build
 
       - name: Generate coverage report

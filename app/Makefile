@@ -39,7 +39,4 @@ jar-dist: clean-build jar run-dist
 report:
 	$(GR) jacocoTestReport
 
-say-hello:
-	@echo "Hi, Sonar!"
-
 .PHONY: build
