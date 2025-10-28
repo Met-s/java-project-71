@@ -1,5 +1,5 @@
 GR = ./gradlew
-COMMAND ?= -h
+FL ?= -h
 
 
 setup:
@@ -17,7 +17,7 @@ install:
 	$(GR) clean install
 
 run-dist:
-	./build/install/java-project-71/bin/java-project-71 $(COMMAND)
+	./build/install/java-project-71/bin/java-project-71 $(FL)
 
 run:
 	$(GR) run
