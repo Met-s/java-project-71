@@ -1,14 +1,14 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.AfterEach;
+//import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,14 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private final String relativePath = "src/test/resources/fileTest.txt";
+    private final String relativePath = "src/test/resources/fixtures" +
+            "/fileTest.txt";
     private final String absolutePath =
-            "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/file1.json";
+            "/home/admint/Hexlet_Game/java-project-71/app/src/test" +
+                    "/resources/fixtures/file1.json";
 
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(output));
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        System.setOut(new PrintStream(output));
+//    }
 
     @Test
     @DisplayName("File path")
@@ -53,16 +55,16 @@ public class AppTest {
         assertEquals(expected, actual);
     }
 
-    @Disabled("Deleted method")
-    @Test
-    public void testMain() {
-        App.main(null);
-        assertEquals("Hello World!",
-                output.toString(StandardCharsets.UTF_8).trim());
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
-    }
+//    @Disabled("Deleted method")
+//    @Test
+//    public void testMain() {
+//        App.main(null);
+//        assertEquals("Hello World!",
+//                output.toString(StandardCharsets.UTF_8).trim());
+//    }
+//
+//    @AfterEach
+//    public void tearDown() {
+//        System.setOut(standardOut);
+//    }
 }
