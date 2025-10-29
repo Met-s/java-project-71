@@ -3,10 +3,8 @@ package hexlet.code;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-//import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.core.type.TypeReference;
 
 
 public class Differ {
