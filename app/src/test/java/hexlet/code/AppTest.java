@@ -29,7 +29,7 @@ public class AppTest {
     @DisplayName("File path")
     public void testDifferGetPath() throws Exception {
         String absolutePath =
-                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fileTest.txt";
+                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/file1.json";
 
         assertTrue(Files.exists(Differ.getPath(absolutePath)));
         assertTrue(Files.exists(Differ.getPath(relativePath)));
