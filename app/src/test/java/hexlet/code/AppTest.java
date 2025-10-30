@@ -22,8 +22,8 @@ public class AppTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
     private final String relativePath = String.valueOf(Paths.get("src", "test", "resources", "fixtures"));
-    private final String absolutePath = String.valueOf(Paths.get( "/home",
-            "admint", "Hexlet_Game", "java-project-71", "app", "src","test", "resources", "fixtures"));
+    private final String absolutePath = String.valueOf(Paths.get("/home",
+            "admint", "Hexlet_Game", "java-project-71", "app", "src", "test", "resources", "fixtures"));
 
 
 //    @BeforeEach
