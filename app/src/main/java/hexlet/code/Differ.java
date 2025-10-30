@@ -31,9 +31,9 @@ public class Differ {
         return Files.readString(pathFile).trim();
     }
 
-    public static Map parser(String path) throws Exception {
-        var mapper = new ObjectMapper();
+    public static Map parser(String file) throws Exception {
 
-        return mapper.readValue(readFile(path), Map.class);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(readFile(file), Map.class);
     }
 }

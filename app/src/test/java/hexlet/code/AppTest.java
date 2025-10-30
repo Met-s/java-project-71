@@ -21,8 +21,8 @@ public class AppTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final String relativePath =
             "src/test/resources/fixtures/fileTest.txt";
-//    private final String absolutePath =
-//            "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
+    private final String absolutePath =
+            "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
 
 //    @BeforeEach
 //    public void setUp() {
@@ -33,8 +33,8 @@ public class AppTest {
     @Test
     @DisplayName("File path")
     public void testDifferGetPath() throws Exception {
-        String absolutePath =
-                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
+//        String absolutePath =
+//                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
 
         assertTrue(Files.exists(Differ.getPath(absolutePath)));
         assertTrue(Files.exists(Differ.getPath(relativePath)));
@@ -52,12 +52,14 @@ public class AppTest {
     @Test
     @DisplayName("Parser")
     public void testDifferParser() throws Exception {
-        String absolutePath =
-                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
+//        String absolutePath =
+//                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
         String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
         String actual = Differ.parser(absolutePath).toString();
         assertEquals(expected, actual);
     }
+
+
 
 //    @Disabled("Deleted method")
 //    @Test
