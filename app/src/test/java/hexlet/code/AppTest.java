@@ -19,11 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private final String relativePath = "src/test/resources/fixtures" +
-            "/fileTest.txt";
+    private final String relativePath =
+            "src/test/resources/fixtures/fileTest.txt";
     private final String absolutePath =
-            "/home/admint/Hexlet_Game/java-project-71/app/src/test" +
-                    "/resources/fixtures/file1.json";
+            "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
 
 //    @BeforeEach
 //    public void setUp() {
