@@ -3,13 +3,14 @@ package hexlet.code;
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 //import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,25 +20,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private final String relativePath =
-            "src/test/resources/fixtures/fileTest.txt";
-    private final String absolutePath =
-            "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
+
+    private final String relativePath = String.valueOf(Paths.get("src", "test", "resources", "fixtures"));
+    private final String absolutePath = String.valueOf(Paths.get( "/home",
+            "admint", "Hexlet_Game", "java-project-71", "app", "src","test", "resources", "fixtures"));
+
 
 //    @BeforeEach
 //    public void setUp() {
 //        System.setOut(new PrintStream(output));
 //    }
 
-    @Disabled
+//    @Disabled
     @Test
     @DisplayName("File path")
     public void testDifferGetPath() throws Exception {
-//        String absolutePath =
-//                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
 
-        assertTrue(Files.exists(Differ.getPath(absolutePath)));
-        assertTrue(Files.exists(Differ.getPath(relativePath)));
+        assertTrue(Files.exists(Differ.getPath(relativePath + "/fileTest.txt")));
+        assertTrue(Files.exists(Differ.getPath(absolutePath + "/fileTest.txt")));
     }
 
     @Test
@@ -45,17 +45,17 @@ public class AppTest {
     public void testDifferReadFile() throws Exception {
 
         String expected = "Hi, Hexlet!";
-        assertEquals(expected, Differ.readFile(relativePath));
+        assertEquals(expected, Differ.readFile(relativePath + "/fileTest.txt"));
     }
 
-    @Disabled
+//    @Disabled
     @Test
     @DisplayName("Parser")
     public void testDifferParser() throws Exception {
-//        String absolutePath =
-//                "/home/admint/Hexlet_Game/java-project-71/app/src/test/resources/fixtures/file1.json";
+
         String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
-        String actual = Differ.parser(absolutePath).toString();
+        String actual =
+                Differ.parser(absolutePath + "/file1.json").toString();
         assertEquals(expected, actual);
     }
 
