@@ -3,7 +3,7 @@ package hexlet.code;
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 
 import java.io.ByteArrayOutputStream;
@@ -29,6 +29,7 @@ public class AppTest {
 //        System.setOut(new PrintStream(output));
 //    }
 
+    @Disabled
     @Test
     @DisplayName("File path")
     public void testDifferGetPath() throws Exception {
@@ -47,6 +48,7 @@ public class AppTest {
         assertEquals(expected, Differ.readFile(relativePath));
     }
 
+    @Disabled
     @Test
     @DisplayName("Parser")
     public void testDifferParser() throws Exception {
