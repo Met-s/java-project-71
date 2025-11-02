@@ -21,9 +21,9 @@ public class AppTest {
             "src", "test", "resources", "fixtures").toString();
 
 
-    private final String absolutePath = FileSystems.getDefault().getPath(
-            "/home", "admint", "Hexlet_Game", "java-project-71",
-        "app", "src", "test", "resources", "fixtures").toString();
+//    private final String absolutePath = FileSystems.getDefault().getPath(
+//            "/home", "admint", "Hexlet_Game", "java-project-71",
+//        "app", "src", "test", "resources", "fixtures").toString();
 
     Path filePath1;
     Path filePath2;
@@ -53,8 +53,8 @@ public class AppTest {
 
         assertTrue(Files.exists(
                 Differ.getPath(relativePath + "/fileTest.txt")));
-        assertTrue(Files.exists(Differ.getPath(
-                absolutePath + "/fileTest.txt")));
+//        assertTrue(Files.exists(Differ.getPath(
+//                absolutePath + "/fileTest.txt")));
     }
 
     @Test
