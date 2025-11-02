@@ -4,14 +4,28 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+
 import java.util.Map;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.formats.StylishFormat;
 
 
 public class Differ {
-    public static String generate() {
+    public static String generate(String file1, String file2) throws Exception {
 
-        return "generate";
+        Path file1Path = Differ.getPath(file1);
+        Path file2Path = Differ.getPath(file2);
+
+        String file1Read = Differ.readFile(file1Path);
+        String file2Read = Differ.readFile(file2Path);
+
+        Map<String, Object> file1Parser = Differ.parser(file1Read);
+        Map<String, Object> file2Parser = Differ.parser(file2Read);
+
+        var mapCompare = Compare.compareFiles(file1Parser, file2Parser);
+
+        return StylishFormat.buildList(mapCompare);
     }
 
     public static Path getPath(String path) throws Exception {
@@ -25,15 +39,14 @@ public class Differ {
         }
     }
 
-    public static String readFile(String path) throws Exception {
+    public static String readFile(Path path) throws Exception {
 
-        Path pathFile = getPath(path);
-        return Files.readString(pathFile).trim();
+        return Files.readString(path).trim();
     }
 
-    public static Map parser(String file) throws Exception {
+    public static Map<String, Object> parser(String file) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(readFile(file), Map.class);
+        return mapper.readValue(file, new TypeReference<>() { });
     }
 }

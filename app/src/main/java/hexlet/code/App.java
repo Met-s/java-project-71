@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.nio.file.FileSystems;
 import java.util.concurrent.Callable;
 
 
@@ -33,14 +34,22 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
+        final String relativePath = FileSystems.getDefault().getPath(
+                "src", "test", "resources", "fixtures").toString();
+
+        String pathFile1 = relativePath + "/" + filepath1;
+        String pathFile2 = relativePath + "/" + filepath2;
+        var result = Differ.generate(pathFile1, pathFile2);
+
+        System.out.println(result);
 
         return "";
     }
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
+
     }
 }
