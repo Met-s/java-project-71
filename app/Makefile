@@ -2,6 +2,7 @@ GR = @./gradlew
 FR ?= -h
 F1 ?= file1.json
 F2 ?= file2.json
+BU-APP = @./build/install/app/bin/app
 
 
 setup:
@@ -18,11 +19,14 @@ clean-build: clean build
 install:
 	$(GR) clean install
 
-run-dist:
-	@./build/install/app/bin/app $(F1) $(F2)
-
 run:
 	$(GR) run
+
+run-dist:
+	$(BU-APP) $(F1) $(F2)
+
+run-h:
+	$(BU-APP) -h
 
 test:
 	$(GR) test
@@ -36,8 +40,7 @@ build-run: build run
 jar:
 	$(GR) installDist
 
-jar-dist: clean-build jar
-	@./build/install/app/bin/app -h
+jar-dist: clean-build jar run-h
 
 report:
 	$(GR) jacocoTestReport
