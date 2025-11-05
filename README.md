@@ -6,3 +6,6 @@
 
 Пример работы пакета: https://asciinema.org/a/Ki5uUvF84FChq4xjsF5Q0Rw02
 [![asciicast](https://asciinema.org/a/Ki5uUvF84FChq4xjsF5Q0Rw02.svg)](https://asciinema.org/a/Ki5uUvF84FChq4xjsF5Q0Rw02)
+
+Пример работы пакета с YAML: https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j
+[![asciicast](https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j.svg)](https://asciinema.org/a/kk1J
