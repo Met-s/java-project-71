@@ -45,8 +45,8 @@ public class AppTest {
         file1Read = Differ.readFile(Differ.getPath(relativePath("file1.json")));
         file2Read = Differ.readFile(Differ.getPath(relativePath("file2.json")));
 
-        file1Parser = Differ.parser(file1Read);
-        file2Parser = Differ.parser(file2Read);
+        file1Parser = Parser.parser(file1Read, "file1.json");
+        file2Parser = Parser.parser(file2Read, "file2.json");
     }
 
     @Test
@@ -84,12 +84,12 @@ public class AppTest {
 
 
     @Test
-    @DisplayName("Parser")
+    @DisplayName("Parser file.json")
     public void testDifferParser() throws Exception {
 
         String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
         String actual =
-                Differ.parser(file1Read).toString();
+                Parser.parser(file1Read, "file1.json").toString();
         assertEquals(expected, actual);
     }
 
@@ -130,6 +130,36 @@ public class AppTest {
         System.out.println(actual);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Extension file")
+    public void testExtensionFile() throws Exception {
+
+        String actual = "yaml";
+        String expected = Differ.fileExtension("filepath1.yaml");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Parser file.yaml")
+    public void testReadFile() throws Exception {
+
+        Path fileYaml = Differ.getPath(relativePath("filepath1.yaml"));
+        var readFile = Differ.readFile(fileYaml);
+
+        var actual = Parser.parser(readFile, "filepath1.yaml").toString();
+        var expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Failed to parse file")
+    public void testFailedParseFile() throws Exception {
+        assertThrows(NullPointerException.class,
+                () -> Parser.parser(null, "filepath1.yaml"));
+
     }
 
 

@@ -6,8 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import hexlet.code.formats.StylishFormat;
 
 
@@ -20,8 +19,8 @@ public class Differ {
         String file1Read = Differ.readFile(file1Path);
         String file2Read = Differ.readFile(file2Path);
 
-        Map<String, Object> file1Parser = Differ.parser(file1Read);
-        Map<String, Object> file2Parser = Differ.parser(file2Read);
+        Map<String, Object> file1Parser = Parser.parser(file1Read, file1);
+        Map<String, Object> file2Parser = Parser.parser(file2Read, file2);
 
         var mapCompare = Compare.compareFiles(file1Parser, file2Parser);
 
@@ -32,6 +31,11 @@ public class Differ {
 
         return (path.startsWith("/") ? Paths.get(path)
                     : Paths.get(path).toAbsolutePath().normalize());
+    }
+
+    public static String fileExtension(String fileName) {
+
+        return fileName.substring(fileName.lastIndexOf('.') + 1);
     }
 
     public static String readFile(Path path) throws Exception {
@@ -46,9 +50,9 @@ public class Differ {
 
     }
 
-    public static Map<String, Object> parser(String file) throws Exception {
-
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, new TypeReference<>() { });
-    }
+//    public static Map<String, Object> parser(String file) throws Exception {
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        return mapper.readValue(file, new TypeReference<>() { });
+//    }
 }
