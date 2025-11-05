@@ -1,32 +1,37 @@
 package hexlet.code;
 
 import hexlet.code.formats.StylishFormat;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import picocli.CommandLine;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class AppTest {
-//    private final PrintStream standardOut = System.out;
-//    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    private final String relativePath =  FileSystems.getDefault().getPath(
-            "src", "test", "resources", "fixtures").toString();
-
-
-//    private final String absolutePath = FileSystems.getDefault().getPath(
-//            "/home", "admint", "Hexlet_Game", "java-project-71",
-//        "app", "src", "test", "resources", "fixtures").toString();
-
-    Path filePath1;
-    Path filePath2;
+    private static String relativePath(String fileName) {
+        return FileSystems.getDefault().getPath(
+                        "src", "test", "resources", "fixtures", fileName)
+                .normalize()
+                .toString();
+    }
 
     String file1Read;
     String file2Read;
@@ -37,11 +42,8 @@ public class AppTest {
     @BeforeEach
     public void preparation() throws Exception {
 
-        filePath1 = Differ.getPath(relativePath + "/file1.json");
-        filePath2 = Differ.getPath(relativePath + "/file2.json");
-
-        file1Read = Differ.readFile(filePath1);
-        file2Read = Differ.readFile(filePath2);
+        file1Read = Differ.readFile(Differ.getPath(relativePath("file1.json")));
+        file2Read = Differ.readFile(Differ.getPath(relativePath("file2.json")));
 
         file1Parser = Differ.parser(file1Read);
         file2Parser = Differ.parser(file2Read);
@@ -51,20 +53,35 @@ public class AppTest {
     @DisplayName("File path")
     public void testDifferGetPath() throws Exception {
 
+        String absolutePath = FileSystems.getDefault().getPath(
+                        "src", "test", "resources", "fixtures", "fileTest.txt")
+                .toAbsolutePath()
+                .normalize()
+                .toString();
+        assertTrue(Files.exists(Differ.getPath(absolutePath)));
+
         assertTrue(Files.exists(
-                Differ.getPath(relativePath + "/fileTest.txt")));
-//        assertTrue(Files.exists(Differ.getPath(
-//                absolutePath + "/fileTest.txt")));
+                Differ.getPath(relativePath("fileTest.txt"))));
     }
 
     @Test
     @DisplayName("Reading a file")
     public void testDifferReadFile() throws Exception {
 
-        Path filePath = Differ.getPath(relativePath + "/fileRead.txt");
+        Path filePath = Differ.getPath(relativePath("fileRead.txt"));
         String expected = "Hi, Hexlet!";
+
         assertEquals(expected, Differ.readFile(filePath));
     }
+
+    @Test
+    @DisplayName("File not readable")
+    public void testDifferReadFileNotReadable() throws Exception {
+        assertThrows(FileNotFoundException.class,
+                () -> Differ.readFile(
+                        Path.of(relativePath("file.j"))));
+    }
+
 
     @Test
     @DisplayName("Parser")
@@ -96,7 +113,7 @@ public class AppTest {
         var map = Compare.compareFiles(file1Parser, file2Parser);
         String actual = StylishFormat.buildList(map);
         String expected = Differ.readFile(
-                Differ.getPath(relativePath + "/fileTest.txt"));
+                Differ.getPath(relativePath("fileTest.txt")));
 
 
         assertEquals(expected.trim(), actual.trim());
@@ -106,32 +123,35 @@ public class AppTest {
     @DisplayName("Test: Differ generate")
     public void testDiffGenerate() throws Exception {
 
-        var actual = Differ.generate(relativePath + "/file1.json",
-                relativePath + "/file2.json");
+        var actual = Differ.generate(relativePath("file1.json"),
+                relativePath("file2.json"));
         var expected = Differ.readFile(
-                Differ.getPath(relativePath + "/fileTest.txt"));
+                Differ.getPath(relativePath("fileTest.txt")));
         System.out.println(actual);
 
         assertEquals(expected, actual);
     }
 
 
-//    @BeforeEach
-//    public void setUp() {
-//        System.setOut(new PrintStream(output));
-//    }
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(output));
+    }
 
+    @DisplayName("Test: App.main")
+    @Test
+    public void testMain() {
 
-//    @Disabled("Deleted method")
-//    @Test
-//    public void testMain() {
-//        App.main(null);
-//        assertEquals("Hello World!",
-//                output.toString(StandardCharsets.UTF_8).trim());
-//    }
-//
-//    @AfterEach
-//    public void tearDown() {
-//        System.setOut(standardOut);
-//    }
+        int exitCode = new CommandLine(new App()).execute();
+        System.out.println(exitCode);
+        String result = Objects.toString(exitCode);
+
+        assertEquals(result,
+                output.toString(StandardCharsets.UTF_8).trim());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+    }
 }

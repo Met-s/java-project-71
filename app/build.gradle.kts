@@ -57,7 +57,16 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events ("passed", "skipped", "failed")
+    }
     finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.jacocoTestReport { reports { xml.required.set(true) } }
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        csv.required.set(true)
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
+}

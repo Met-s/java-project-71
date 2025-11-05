@@ -32,13 +32,16 @@ public class App implements Callable<String> {
             description = "path to second file")
     String filepath2;
 
+    private static String getFixturePath(String filename) {
+        return FileSystems.getDefault().getPath(
+                "src", "test", "resources", "fixtures", filename).toString();
+    }
+
     @Override
     public String call() throws Exception {
-        final String relativePath = FileSystems.getDefault().getPath(
-                "src", "test", "resources", "fixtures").toString();
 
-        String pathFile1 = relativePath + "/" + filepath1;
-        String pathFile2 = relativePath + "/" + filepath2;
+        String pathFile1 = getFixturePath(filepath1);
+        String pathFile2 = getFixturePath(filepath2);
         var result = Differ.generate(pathFile1, pathFile2);
 
         System.out.println(result);
@@ -46,10 +49,9 @@ public class App implements Callable<String> {
         return "";
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
-
     }
 }

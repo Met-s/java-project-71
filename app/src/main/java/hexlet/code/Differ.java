@@ -28,20 +28,22 @@ public class Differ {
         return StylishFormat.buildList(mapCompare);
     }
 
-    public static Path getPath(String path) throws Exception {
+    public static Path getPath(String path) {
 
-        try {
-            return (path.startsWith("/") ? Paths.get(path)
+        return (path.startsWith("/") ? Paths.get(path)
                     : Paths.get(path).toAbsolutePath().normalize());
-
-        } catch (Exception e) {
-            throw new FileNotFoundException(path + "There is no such file or the path is incorrect.");
-        }
     }
 
     public static String readFile(Path path) throws Exception {
 
-        return Files.readString(path).trim();
+        try {
+            return Files.readString(path).trim();
+        } catch (Exception e) {
+            throw new FileNotFoundException(path
+                    + " - There is no such file or the path is incorrect.");
+        }
+
+
     }
 
     public static Map<String, Object> parser(String file) throws Exception {
