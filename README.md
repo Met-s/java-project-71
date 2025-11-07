@@ -9,3 +9,7 @@
 
 Пример работы пакета с YAML: https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j
 [![asciicast](https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j.svg)](https://asciinema.org/a/kk1J
+
+Пример работы пакета с вложенными структурами: https://asciinema.
+org/a/bSoMIiFtxiiqSZy6nemMkWyIk
+[![asciicast](https://asciinema.org/a/bSoMIiFtxiiqSZy6nemMkWyIk.svg)](https://asciinema.org/a/bSoMIiFtxiiqSZy6nemMkWyIk)

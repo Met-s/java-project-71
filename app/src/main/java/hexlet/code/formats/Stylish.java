@@ -3,8 +3,8 @@ package hexlet.code.formats;
 import java.util.List;
 import java.util.Map;
 
-public class StylishFormat {
-    public static String buildList(Map<String, List<Object>> map) {
+public class Stylish {
+    public static String stylish(Map<String, List<Object>> map) {
 
         var result = new StringBuilder("{\n");
 

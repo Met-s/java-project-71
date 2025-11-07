@@ -19,18 +19,18 @@ public class App implements Callable<String> {
     @Option(names = {"-f", "--format"},
             paramLabel = "format",
             defaultValue = "stylish",
-            description = "output format [defaule: stylish]")
+            description = "output format [default: stylish]")
     private String format;
 
     @Parameters(index = "0",
             paramLabel = "filepath1",
             description = "path too first file")
-    String filepath1;
+    private String filepath1;
 
     @Parameters(index = "1",
             paramLabel = "filepath2",
             description = "path to second file")
-    String filepath2;
+    private String filepath2;
 
     private static String getFixturePath(String filename) {
         return FileSystems.getDefault().getPath(
@@ -42,7 +42,8 @@ public class App implements Callable<String> {
 
         String pathFile1 = getFixturePath(filepath1);
         String pathFile2 = getFixturePath(filepath2);
-        var result = Differ.generate(pathFile1, pathFile2);
+
+        var result = Differ.generate(format, pathFile1, pathFile2);
 
         System.out.println(result);
 

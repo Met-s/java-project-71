@@ -3,6 +3,7 @@ FR ?= -h
 F1 ?= file1.json
 F2 ?= file2.json
 BU-APP = @./build/install/app/bin/app
+ST = "stylish"
 
 
 setup:

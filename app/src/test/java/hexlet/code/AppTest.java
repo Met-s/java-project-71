@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.formats.StylishFormat;
+import hexlet.code.formats.Stylish;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -82,7 +82,6 @@ public class AppTest {
                         Path.of(relativePath("file.j"))));
     }
 
-
     @Test
     @DisplayName("Parser file.json")
     public void testDifferParser() throws Exception {
@@ -111,7 +110,7 @@ public class AppTest {
     public void testStylishFormat() throws Exception {
 
         var map = Compare.compareFiles(file1Parser, file2Parser);
-        String actual = StylishFormat.buildList(map);
+        String actual = Stylish.stylish(map);
         String expected = Differ.readFile(
                 Differ.getPath(relativePath("fileTest.txt")));
 
@@ -123,11 +122,11 @@ public class AppTest {
     @DisplayName("Test: Differ generate")
     public void testDiffGenerate() throws Exception {
 
-        var actual = Differ.generate(relativePath("file1.json"),
+        var actual = Differ.generate("stylish",
+                relativePath("file1.json"),
                 relativePath("file2.json"));
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("fileTest.txt")));
-        System.out.println(actual);
 
         assertEquals(expected, actual);
     }
@@ -137,7 +136,7 @@ public class AppTest {
     public void testExtensionFile() throws Exception {
 
         String actual = "yaml";
-        String expected = Differ.fileExtension("filepath1.yaml");
+        String expected = Differ.fileExtension("file1.yaml");
         assertEquals(expected, actual);
     }
 
@@ -145,10 +144,10 @@ public class AppTest {
     @DisplayName("Parser file.yaml")
     public void testReadFile() throws Exception {
 
-        Path fileYaml = Differ.getPath(relativePath("filepath1.yaml"));
+        Path fileYaml = Differ.getPath(relativePath("file1.yaml"));
         var readFile = Differ.readFile(fileYaml);
 
-        var actual = Parser.parser(readFile, "filepath1.yaml").toString();
+        var actual = Parser.parser(readFile, "file1.yaml").toString();
         var expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
 
         assertEquals(expected, actual);
@@ -158,10 +157,9 @@ public class AppTest {
     @DisplayName("Failed to parse file")
     public void testFailedParseFile() throws Exception {
         assertThrows(NullPointerException.class,
-                () -> Parser.parser(null, "filepath1.yaml"));
+                () -> Parser.parser(null, "file1.yaml"));
 
     }
-
 
     @BeforeEach
     public void setUp() {

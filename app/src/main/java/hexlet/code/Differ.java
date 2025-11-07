@@ -6,12 +6,14 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 import java.util.Map;
+import java.util.Objects;
 
-import hexlet.code.formats.StylishFormat;
+import hexlet.code.formats.Stylish;
 
 
 public class Differ {
-    public static String generate(String file1, String file2) throws Exception {
+    public static String generate(String format, String file1,
+                                  String file2) throws Exception {
 
         Path file1Path = Differ.getPath(file1);
         Path file2Path = Differ.getPath(file2);
@@ -22,9 +24,14 @@ public class Differ {
         Map<String, Object> file1Parser = Parser.parser(file1Read, file1);
         Map<String, Object> file2Parser = Parser.parser(file2Read, file2);
 
+
         var mapCompare = Compare.compareFiles(file1Parser, file2Parser);
 
-        return StylishFormat.buildList(mapCompare);
+        String result = null;
+        if (Objects.equals(format, "stylish")) {
+            result = Stylish.stylish(mapCompare);
+        }
+        return result;
     }
 
     public static Path getPath(String path) {
@@ -46,13 +53,5 @@ public class Differ {
             throw new FileNotFoundException(path
                     + " - There is no such file or the path is incorrect.");
         }
-
-
     }
-
-//    public static Map<String, Object> parser(String file) throws Exception {
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        return mapper.readValue(file, new TypeReference<>() { });
-//    }
 }
