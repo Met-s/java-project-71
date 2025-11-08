@@ -1,4 +1,4 @@
-package hexlet.code.formats;
+package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
@@ -10,24 +10,28 @@ public class Stylish {
 
         for (var entry : map.entrySet()) {
 
-            if ((entry.getValue().get(0)) == "0") {
-                result.append("    ").append(entry.getKey()).append(": ")
-                        .append(entry.getValue().get(1)).append("\n");
+            var key = entry.getValue().get(0);
+            var value1 = entry.getValue().get(1);
+            var value2 = entry.getValue().get(2);
 
-            } else if ((entry.getValue().get(0)) == "1") {
+            if (key == "0") {
+                result.append("    ").append(entry.getKey()).append(": ")
+                        .append(value1).append("\n");
+
+            } else if (key == "1") {
                 result.append("  - ").append(entry.getKey()).append(": ")
-                        .append(entry.getValue().get(1)).append("\n");
+                        .append(value1).append("\n");
 
                 result.append("  + ").append(entry.getKey()).append(": ")
-                        .append(entry.getValue().get(2)).append("\n");
+                        .append(value2).append("\n");
 
-            } else if ((entry.getValue().get(0)) == "2") {
+            } else if (key == "2") {
                 result.append("  - ").append(entry.getKey()).append(": ")
-                        .append(entry.getValue().get(1)).append("\n");
+                        .append(value1).append("\n");
 
             } else if ((entry.getValue().get(0)) == "3") {
                 result.append("  + ").append(entry.getKey()).append(": ")
-                        .append(entry.getValue().get(2)).append("\n");
+                        .append(value2).append("\n");
             }
         }
         result.append("}");

@@ -43,7 +43,7 @@ public class App implements Callable<String> {
         String pathFile1 = getFixturePath(filepath1);
         String pathFile2 = getFixturePath(filepath2);
 
-        var result = Differ.generate(format, pathFile1, pathFile2);
+        var result = Differ.generate(pathFile1, pathFile2, format);
 
         System.out.println(result);
 

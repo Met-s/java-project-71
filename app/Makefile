@@ -3,8 +3,11 @@ FR ?= -h
 F1 ?= file1.json
 F2 ?= file2.json
 BU-APP = @./build/install/app/bin/app
-ST = "stylish"
+FY1 ?= filepath1.yaml
+FY2 ?= filepath2.yaml
 
+run-plain:
+	$(BU-APP) -f plain $(FY1) $(FY2)
 
 setup:
 	$(GR) wrapper --gradle-version 8.11

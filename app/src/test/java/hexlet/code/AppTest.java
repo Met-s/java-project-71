@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.formats.Stylish;
+import hexlet.code.formatters.Stylish;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -122,21 +122,12 @@ public class AppTest {
     @DisplayName("Test: Differ generate")
     public void testDiffGenerate() throws Exception {
 
-        var actual = Differ.generate("stylish",
-                relativePath("file1.json"),
-                relativePath("file2.json"));
+        var actual = Differ.generate(relativePath("file1.json"),
+                relativePath("file2.json"), "stylish");
+
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("fileTest.txt")));
 
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    @DisplayName("Extension file")
-    public void testExtensionFile() throws Exception {
-
-        String actual = "yaml";
-        String expected = Differ.fileExtension("file1.yaml");
         assertEquals(expected, actual);
     }
 
@@ -158,6 +149,32 @@ public class AppTest {
     public void testFailedParseFile() throws Exception {
         assertThrows(NullPointerException.class,
                 () -> Parser.parser(null, "file1.yaml"));
+
+    }
+
+    @Test
+    @DisplayName("Test: plain Format")
+    public void testPlainFormat() throws Exception {
+        var expected = Differ.readFile(
+                Differ.getPath(relativePath("filePlainTest.txt")));
+
+        var file1 = relativePath("filepath1.yaml");
+        var file2 = relativePath("filepath2.yaml");
+        var actual = Differ.generate(file1, file2, "plain");
+
+        assertEquals(expected.trim(), actual.trim());
+    }
+
+    @Test
+    @DisplayName("Test: Non-existent Format")
+    public void testExceptionFormat() throws Exception {
+        var actual = Differ.generate(
+                        relativePath("file1.json"),
+                        relativePath("file2.json"),
+                "<Non-existent format>");
+
+        assertEquals("<Non-existent format> - Formatter name is incorrect",
+                actual.trim());
 
     }
 

@@ -9,7 +9,7 @@ import java.util.Map;
 public class Parser {
     public static Map<String, Object> parser(String file, String fileName) {
 
-        String extension = Differ.fileExtension(fileName);
+        String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
 
         try {
             ObjectMapper mapper = null;
