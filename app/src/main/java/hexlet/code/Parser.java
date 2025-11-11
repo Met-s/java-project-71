@@ -18,7 +18,7 @@ public class Parser {
 
                 mapper = new ObjectMapper();
 
-            } else if (extension.equals("yaml")) {
+            } else if (extension.equals("yaml") || extension.equals("yml")) {
 
                 mapper = new YAMLMapper();
             }

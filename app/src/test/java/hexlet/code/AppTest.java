@@ -175,7 +175,21 @@ public class AppTest {
 
         assertEquals("<Non-existent format> - Formatter name is incorrect",
                 actual.trim());
+    }
 
+    @Test
+    @DisplayName("Test: Format json")
+    public void testFormatJson() throws Exception {
+
+
+        var file1 = relativePath("file1.yaml");
+        var file2 = relativePath("file2.yaml");
+        var actual = Differ.generate(file1, file2, "json");
+
+        var expected = Differ.readFile(
+                Differ.getPath(relativePath("testJson.json")));
+
+        assertEquals(expected, actual);
     }
 
     @BeforeEach

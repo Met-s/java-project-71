@@ -10,9 +10,11 @@
 Пример работы пакета с YAML: https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j
 [![asciicast](https://asciinema.org/a/kk1JffDFCi3PoBg2d8zIOXR1j.svg)](https://asciinema.org/a/kk1J
 
-Пример работы пакета с вложенными структурами: https://asciinema.
-org/a/bSoMIiFtxiiqSZy6nemMkWyIk
+Пример работы пакета с вложенными структурами: https://asciinema.org/a/bSoMIiFtxiiqSZy6nemMkWyIk
 [![asciicast](https://asciinema.org/a/bSoMIiFtxiiqSZy6nemMkWyIk.svg)](https://asciinema.org/a/bSoMIiFtxiiqSZy6nemMkWyIk)
 
-Пример работы пакета c форматерам plain: https://asciinema.org/a/J6LVkfkJe2kvVYhm9aG3CyduM
+Пример работы пакета c форматером plain: https://asciinema.org/a/J6LVkfkJe2kvVYhm9aG3CyduM
 [![asciicast](https://asciinema.org/a/J6LVkfkJe2kvVYhm9aG3CyduM.svg)](https://asciinema.org/a/J6LVkfkJe2kvVYhm9aG3CyduM)
+
+Пример работы пакета c форматером json: https://asciinema.org/a/eczEN1f8WS1hDXL7RY6Gb2xgK
+[![asciicast](https://asciinema.org/a/eczEN1f8WS1hDXL7RY6Gb2xgK.svg)](https://asciinema.org/a/eczEN1f8WS1hDXL7RY6Gb2xgK)
