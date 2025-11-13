@@ -26,6 +26,10 @@ public class Differ {
         return Formatter.format(mapCompare, format);
     }
 
+    public static String generate(String file1, String file2) throws Exception {
+        return generate(file1, file2, "stylish");
+    }
+
     public static Path getPath(String path) {
 
         return (path.startsWith("/") ? Paths.get(path)

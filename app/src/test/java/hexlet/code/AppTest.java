@@ -125,7 +125,7 @@ public class AppTest {
         String filePath1 = relativePath("file1.json");
         String filePath2 = relativePath("file2.json");
 
-        var actual = Differ.generate(filePath1, filePath2, "stylish");
+        var actual = Differ.generate(filePath1, filePath2);
 
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("fileTest.txt")));
