@@ -14,7 +14,7 @@ public class Stylish {
 
         for (var entry : map.entrySet()) {
 
-            var key = (int) entry.getValue().get(0);
+            var key = (String) entry.getValue().get(0);
             var value1 = entry.getValue().get(1);
             var value2 = entry.getValue().get(2);
 

@@ -122,8 +122,10 @@ public class AppTest {
     @DisplayName("Test: Differ generate")
     public void testDiffGenerate() throws Exception {
 
-        var actual = Differ.generate(relativePath("file1.json"),
-                relativePath("file2.json"), "stylish");
+        String filePath1 = relativePath("file1.json");
+        String filePath2 = relativePath("file2.json");
+
+        var actual = Differ.generate(filePath1, filePath2, "stylish");
 
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("fileTest.txt")));

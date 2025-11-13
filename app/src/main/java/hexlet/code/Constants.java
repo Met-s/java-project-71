@@ -2,8 +2,8 @@ package hexlet.code;
 
 public final class Constants {
 
-    public static final int UNCHANGED = 0;
-    public static final int MODIFIED = 1;
-    public static final int DELETED = 2;
-    public static final int ADDED = 3;
+    public static final String UNCHANGED = "0";
+    public static final String MODIFIED = "1";
+    public static final String DELETED = "2";
+    public static final String ADDED = "3";
 }

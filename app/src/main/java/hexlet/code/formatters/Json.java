@@ -22,7 +22,7 @@ public class Json {
 
             var key = keys.getKey();
             var values = keys.getValue();
-            var status = (int) values.get(0);
+            var status = (String) values.get(0);
             var oldValue = values.get(1);
             var newValue = values.get(2);
 
