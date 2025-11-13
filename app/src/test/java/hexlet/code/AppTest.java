@@ -186,6 +186,7 @@ public class AppTest {
         var file2 = relativePath("file2.yaml");
         var actual = Differ.generate(file1, file2, "json");
 
+
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("testJson.json")));
 
