@@ -37,7 +37,7 @@ public class Plain {
                 default -> { }
             }
         }
-        return result.toString();
+        return result.toString().trim();
     }
 
     public static Object complexValue(Object value) {
