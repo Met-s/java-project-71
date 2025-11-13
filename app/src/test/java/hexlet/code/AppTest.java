@@ -26,13 +26,6 @@ public class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    private static String relativePath(String fileName) {
-        return FileSystems.getDefault().getPath(
-                        "src", "test", "resources", "fixtures", fileName)
-                .normalize()
-                .toString();
-    }
-
     String file1Read;
     String file2Read;
 
@@ -42,8 +35,8 @@ public class AppTest {
     @BeforeEach
     public void preparation() throws Exception {
 
-        file1Read = Differ.readFile(Differ.getPath(relativePath("file1.json")));
-        file2Read = Differ.readFile(Differ.getPath(relativePath("file2.json")));
+        file1Read = Differ.readFile(Differ.getPath("file1.json"));
+        file2Read = Differ.readFile(Differ.getPath("file2.json"));
 
         file1Parser = Parser.parser(file1Read, "file1.json");
         file2Parser = Parser.parser(file2Read, "file2.json");
@@ -62,14 +55,14 @@ public class AppTest {
         assertTrue(Files.exists(Differ.getPath(absolutePath)));
 
         assertTrue(Files.exists(
-                Differ.getPath(relativePath("fileTest.txt"))));
+                Differ.getPath("fileTest.txt")));
     }
 
     @Test
     @DisplayName("Reading a file")
     public void testDifferReadFile() throws Exception {
 
-        Path filePath = Differ.getPath(relativePath("fileRead.txt"));
+        Path filePath = Differ.getPath("fileRead.txt");
         String expected = "Hi, Hexlet!";
 
         assertEquals(expected, Differ.readFile(filePath));
@@ -80,7 +73,7 @@ public class AppTest {
     public void testDifferReadFileNotReadable() throws Exception {
         assertThrows(FileNotFoundException.class,
                 () -> Differ.readFile(
-                        Path.of(relativePath("file.j"))));
+                        Path.of("file.j")));
     }
 
     @Test
@@ -113,7 +106,7 @@ public class AppTest {
         var map = Compare.compareFiles(file1Parser, file2Parser);
         String actual = Stylish.stylish(map);
         String expected = Differ.readFile(
-                Differ.getPath(relativePath("fileTest.txt")));
+                Differ.getPath("fileTest.txt"));
 
         assertEquals(expected, actual);
     }
@@ -122,13 +115,10 @@ public class AppTest {
     @DisplayName("Test: Differ generate")
     public void testDiffGenerate() throws Exception {
 
-        String filePath1 = relativePath("file1.json");
-        String filePath2 = relativePath("file2.json");
-
-        var actual = Differ.generate(filePath1, filePath2);
+        var actual = Differ.generate("file1.json", "file2.json");
 
         var expected = Differ.readFile(
-                Differ.getPath(relativePath("fileTest.txt")));
+                Differ.getPath("fileTest.txt"));
 
         assertEquals(expected, actual);
     }
@@ -137,7 +127,7 @@ public class AppTest {
     @DisplayName("Parser file.yaml")
     public void testReadFile() throws Exception {
 
-        Path fileYaml = Differ.getPath(relativePath("file1.yaml"));
+        Path fileYaml = Differ.getPath("file1.yaml");
         var readFile = Differ.readFile(fileYaml);
 
         var actual = Parser.parser(readFile, "file1.yaml").toString();
@@ -158,11 +148,9 @@ public class AppTest {
     @DisplayName("Test: plain Format")
     public void testPlainFormat() throws Exception {
         var expected = Differ.readFile(
-                Differ.getPath(relativePath("filePlainTest.txt")));
+                Differ.getPath("filePlainTest.txt"));
 
-        var file1 = relativePath("filepath1.json");
-        var file2 = relativePath("filepath2.json");
-        var actual = Differ.generate(file1, file2, "plain");
+        var actual = Differ.generate("filepath1.json", "filepath2.json", "plain");
 
         assertEquals(expected, actual);
     }
@@ -171,8 +159,8 @@ public class AppTest {
     @DisplayName("Test: Non-existent Format")
     public void testExceptionFormat() throws Exception {
         var actual = Differ.generate(
-                        relativePath("file1.json"),
-                        relativePath("file2.json"),
+                        "file1.json",
+                        "file2.json",
                 "<Non-existent format>");
 
         assertEquals("<Non-existent format> - Formatter name is incorrect",
@@ -183,14 +171,10 @@ public class AppTest {
     @DisplayName("Test: Format json")
     public void testFormatJson() throws Exception {
 
-
-        var file1 = relativePath("file1.yaml");
-        var file2 = relativePath("file2.yaml");
-        var actual = Differ.generate(file1, file2, "json");
-
+        var actual = Differ.generate("file1.yaml", "file2.yaml", "json");
 
         var expected = Differ.readFile(
-                Differ.getPath(relativePath("testJson.json")));
+                Differ.getPath("testJson.json"));
 
         assertEquals(expected, actual);
     }

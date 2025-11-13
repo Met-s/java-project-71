@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import java.io.FileNotFoundException;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -30,11 +31,18 @@ public class Differ {
         return Differ.generate(file1, file2, "stylish");
     }
 
-    public static Path getPath(String path) {
-        Path path1 = Paths.get(path);
+    private static String getFixturePath() {
 
-        return (path1.isAbsolute()) ? path1.normalize()
-                    : path1.toAbsolutePath().normalize();
+        return FileSystems.getDefault().getPath(
+                "src", "test", "resources", "fixtures").toString();
+    }
+
+    public static Path getPath(String path) {
+        Path pathAbsolute = Paths.get(path);
+
+        return pathAbsolute.isAbsolute() ? pathAbsolute.normalize()
+                : Paths.get(getFixturePath(), path)
+                .toAbsolutePath().normalize();
     }
 
     public static String readFile(Path path) throws Exception {

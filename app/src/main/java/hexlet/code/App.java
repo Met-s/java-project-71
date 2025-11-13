@@ -5,7 +5,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.nio.file.FileSystems;
 import java.util.concurrent.Callable;
 
 
@@ -32,19 +31,13 @@ public class App implements Callable<Integer> {
             description = "path to second file")
     private String filepath2;
 
-    private static String getFixturePath(String filename) {
-        return FileSystems.getDefault().getPath(
-                "src", "test", "resources", "fixtures", filename).toString();
-    }
+
 
     @Override
     public Integer call() {
 
-        String pathFile1 = getFixturePath(filepath1);
-        String pathFile2 = getFixturePath(filepath2);
-
         try {
-            String result = Differ.generate(pathFile1, pathFile2, format);
+            String result = Differ.generate(filepath1, filepath2, format);
             System.out.println(result);
 
         } catch (Exception e) {
