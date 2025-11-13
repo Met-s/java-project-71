@@ -1,5 +1,6 @@
 package hexlet.code.formatters;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import static hexlet.code.Constants.MODIFIED;
 import static hexlet.code.Constants.DELETED;
 
 public class Stylish {
-    public static String stylish(Map<String, List<Object>> map) {
+    public static String stylish(Map<String, List<Object>> map) throws IOException {
 
         var result = new StringBuilder("{\n");
 
@@ -39,6 +40,6 @@ public class Stylish {
         }
         result.append("}");
 
-        return result.toString();
+        return result.toString().trim();
     }
 }

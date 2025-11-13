@@ -27,7 +27,7 @@ public class Differ {
     }
 
     public static String generate(String file1, String file2) throws Exception {
-        return generate(file1, file2, "stylish");
+        return Differ.generate(file1, file2, "stylish");
     }
 
     public static Path getPath(String path) {

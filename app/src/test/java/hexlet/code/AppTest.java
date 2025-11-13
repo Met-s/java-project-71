@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.formatters.Stylish;
+//import hexlet.code.formatters.Stylish;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -109,13 +109,19 @@ public class AppTest {
     @DisplayName("Test: Stylish Format")
     public void testStylishFormat() throws Exception {
 
-        var map = Compare.compareFiles(file1Parser, file2Parser);
-        String actual = Stylish.stylish(map);
-        String expected = Differ.readFile(
-                Differ.getPath(relativePath("fileTest.txt")));
+//        var map = Compare.compareFiles(file1Parser, file2Parser);
+//        String actual = Stylish.stylish(map);
+//        String expected = Differ.readFile(
+//                Differ.getPath(relativePath("fileTest.txt")));
 
+        var expected = Differ.readFile(
+                Differ.getPath(relativePath("fileStylish1Test.txt")));
 
-        assertEquals(expected.trim(), actual.trim());
+        var file1 = relativePath("filepath1.json");
+        var file2 = relativePath("filepath2.json");
+        var actual = Differ.generate(file1, file2);
+
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -163,9 +169,6 @@ public class AppTest {
         var file1 = relativePath("filepath1.json");
         var file2 = relativePath("filepath2.json");
         var actual = Differ.generate(file1, file2, "plain");
-
-        var act = "HI";
-        var exp = "HI";
 
         assertEquals(expected, actual);
     }

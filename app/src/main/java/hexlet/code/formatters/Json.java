@@ -56,6 +56,6 @@ public class Json {
                 }
             }
         }
-        return mapper.writeValueAsString(resultFile);
+        return mapper.writeValueAsString(resultFile).trim();
     }
 }
