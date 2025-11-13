@@ -58,6 +58,7 @@ public class AppTest {
                 .toAbsolutePath()
                 .normalize()
                 .toString();
+
         assertTrue(Files.exists(Differ.getPath(absolutePath)));
 
         assertTrue(Files.exists(

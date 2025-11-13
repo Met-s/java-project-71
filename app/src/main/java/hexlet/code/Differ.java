@@ -31,9 +31,10 @@ public class Differ {
     }
 
     public static Path getPath(String path) {
+        Path path1 = Paths.get(path);
 
-        return (path.startsWith("/") ? Paths.get(path)
-                    : Paths.get(path).toAbsolutePath().normalize());
+        return (path1.isAbsolute()) ? path1.normalize()
+                    : path1.toAbsolutePath().normalize();
     }
 
     public static String readFile(Path path) throws Exception {
