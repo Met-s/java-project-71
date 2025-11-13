@@ -22,18 +22,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class AppTest {
+final class AppTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    String file1Read;
-    String file2Read;
+    private String file1Read;
+    private String file2Read;
 
-    Map<String, Object> file1Parser;
-    Map<String, Object> file2Parser;
+    private Map<String, Object> file1Parser;
+    private Map<String, Object> file2Parser;
 
     @BeforeEach
-    public void preparation() throws Exception {
+     void preparation() throws Exception {
 
         file1Read = Differ.readFile(Differ.getPath("file1.json"));
         file2Read = Differ.readFile(Differ.getPath("file2.json"));
@@ -44,7 +44,7 @@ public class AppTest {
 
     @Test
     @DisplayName("File path")
-    public void testDifferGetPath() throws Exception {
+    public void testDifferGetPath() {
 
         String absolutePath = FileSystems.getDefault().getPath(
                         "src", "test", "resources", "fixtures", "fileTest.txt")
@@ -70,7 +70,7 @@ public class AppTest {
 
     @Test
     @DisplayName("File not readable")
-    public void testDifferReadFileNotReadable() throws Exception {
+    public void testDifferReadFileNotReadable() {
         assertThrows(FileNotFoundException.class,
                 () -> Differ.readFile(
                         Path.of("file.j")));
@@ -78,7 +78,7 @@ public class AppTest {
 
     @Test
     @DisplayName("Parser file.json")
-    public void testDifferParser() throws Exception {
+    public void testDifferParser() {
 
         String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
         String actual =
@@ -88,7 +88,7 @@ public class AppTest {
 
     @Test
     @DisplayName("Test: Compare.compareFile")
-    public void testCompareFile() throws Exception {
+    public void testCompareFile() {
 
         var compareResult = Compare.compareFiles(file1Parser, file2Parser);
 
@@ -138,7 +138,7 @@ public class AppTest {
 
     @Test
     @DisplayName("Failed to parse file")
-    public void testFailedParseFile() throws Exception {
+    public void testFailedParseFile() {
         assertThrows(NullPointerException.class,
                 () -> Parser.parser(null, "file1.yaml"));
 
