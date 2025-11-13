@@ -160,11 +160,14 @@ public class AppTest {
         var expected = Differ.readFile(
                 Differ.getPath(relativePath("filePlainTest.txt")));
 
-        var file1 = relativePath("filepath1.yaml");
-        var file2 = relativePath("filepath2.yaml");
+        var file1 = relativePath("filepath1.json");
+        var file2 = relativePath("filepath2.json");
         var actual = Differ.generate(file1, file2, "plain");
 
-        assertEquals(expected.trim(), actual.trim());
+        var act = "HI";
+        var exp = "HI";
+
+        assertEquals(expected, actual);
     }
 
     @Test

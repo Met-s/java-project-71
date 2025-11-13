@@ -1,5 +1,6 @@
 package hexlet.code.formatters;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import static hexlet.code.Constants.ADDED;
 
 
 public class Plain {
-    public static String plain(Map<String, List<Object>> map) {
+    public static String plain(Map<String, List<Object>> map) throws IOException {
 
         var result = new StringBuilder();
         for (var entry : map.entrySet()) {
@@ -31,8 +32,8 @@ public class Plain {
 
                 case ADDED -> result.append("\nProperty '")
                         .append(entry.getKey())
-                        .append("' was added with value: '")
-                        .append(value2).append("'");
+                        .append("' was added with value: ")
+                        .append(value2);
 
                 default -> { }
             }
