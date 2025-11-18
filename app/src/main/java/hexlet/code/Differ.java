@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 import java.util.Map;
+import static hexlet.code.Constants.STYLISH;
 
 
 public class Differ {
@@ -28,7 +29,7 @@ public class Differ {
     }
 
     public static String generate(String file1, String file2) throws Exception {
-        return Differ.generate(file1, file2, "stylish");
+        return Differ.generate(file1, file2, STYLISH);
     }
 
     private static String getFixturePath() {

@@ -49,4 +49,6 @@ jar-dist: clean-build jar run-h
 report:
 	$(GR) jacocoTestReport
 
+check:
+	$(GR) checkstyleTest
 .PHONY: build

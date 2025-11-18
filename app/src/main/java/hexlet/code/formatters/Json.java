@@ -6,12 +6,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static hexlet.code.Constants.STATUS;
+import static hexlet.code.Constants.OLD_VALUE;
+import static hexlet.code.Constants.NEW_VALUE;
 import static hexlet.code.Constants.UNCHANGED;
 import static hexlet.code.Constants.MODIFIED;
 import static hexlet.code.Constants.DELETED;
 
 
 public class Json {
+    @SuppressWarnings("checkstyle:LocalVariableName")
     public static String json(Map<String, List<Object>> map) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -22,9 +26,9 @@ public class Json {
 
             var key = keys.getKey();
             var values = keys.getValue();
-            var status = (String) values.get(0);
-            var oldValue = values.get(1);
-            var newValue = values.get(2);
+            String status = (String) values.get(STATUS);
+            var oldValue = values.get(OLD_VALUE);
+            var newValue = values.get(NEW_VALUE);
 
             Map<String, Object> result = new LinkedHashMap<>();
 

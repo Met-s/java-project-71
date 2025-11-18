@@ -3,6 +3,9 @@ package hexlet.code.formatters;
 import java.util.List;
 import java.util.Map;
 
+import static hexlet.code.Constants.STATUS;
+import static hexlet.code.Constants.OLD_VALUE;
+import static hexlet.code.Constants.NEW_VALUE;
 import static hexlet.code.Constants.UNCHANGED;
 import static hexlet.code.Constants.MODIFIED;
 import static hexlet.code.Constants.DELETED;
@@ -15,17 +18,15 @@ public class Stylish {
 
         for (var entry : map.entrySet()) {
 
-            var key = (String) entry.getValue().get(0);
-            var value1 = entry.getValue().get(1);
-            var value2 = entry.getValue().get(2);
+            var key = (String) entry.getValue().get(STATUS);
+            var value1 = entry.getValue().get(OLD_VALUE);
+            var value2 = entry.getValue().get(NEW_VALUE);
 
             switch (key) {
-                case UNCHANGED ->
-                        result.append("    ").append(entry.getKey())
+                case UNCHANGED -> result.append("    ").append(entry.getKey())
                                 .append(": ").append(value1).append("\n");
 
-                case MODIFIED ->
-                        result.append("  - ").append(entry.getKey())
+                case MODIFIED -> result.append("  - ").append(entry.getKey())
                                 .append(": ").append(value1).append("\n")
 
                         .append("  + ").append(entry.getKey())

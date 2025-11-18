@@ -21,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import static hexlet.code.Constants.PLAIN;
+import static hexlet.code.Constants.JSON;
+
 
 final class AppTest {
     private final PrintStream standardOut = System.out;
@@ -78,7 +81,7 @@ final class AppTest {
 
     @Test
     @DisplayName("Parser file.json")
-    public void testDifferParser() {
+    public void testDifferParser() throws Exception {
 
         String expected = "{host=hexlet.io, timeout=50, proxy=123.234.53.22, follow=false}";
         String actual =
@@ -139,8 +142,8 @@ final class AppTest {
     @Test
     @DisplayName("Failed to parse file")
     public void testFailedParseFile() {
-        assertThrows(NullPointerException.class,
-                () -> Parser.parser(null, "file1.yaml"));
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parser(null, "file1.txt"));
 
     }
 
@@ -150,7 +153,8 @@ final class AppTest {
         var expected = Differ.readFile(
                 Differ.getPath("filePlainTest.txt"));
 
-        var actual = Differ.generate("filepath1.json", "filepath2.json", "plain");
+        var actual = Differ.generate("filepath1.json", "filepath2.json",
+                PLAIN);
 
         assertEquals(expected, actual);
     }
@@ -171,7 +175,7 @@ final class AppTest {
     @DisplayName("Test: Format json")
     public void testFormatJson() throws Exception {
 
-        var actual = Differ.generate("file1.yaml", "file2.yaml", "json");
+        var actual = Differ.generate("file1.yaml", "file2.yaml", JSON);
 
         var expected = Differ.readFile(
                 Differ.getPath("testJson.json"));
