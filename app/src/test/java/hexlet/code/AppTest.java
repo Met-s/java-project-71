@@ -143,7 +143,7 @@ final class AppTest {
     @DisplayName("Failed to parse file")
     public void testFailedParseFile() {
         assertThrows(IllegalArgumentException.class,
-                () -> Parser.parser(null, "file1.txt"));
+                () -> Parser.parser(file1Read, "file1.jsone"));
 
     }
 

@@ -23,8 +23,7 @@ public class Parser {
         return switch (extension) {
             case "json" -> new ObjectMapper();
             case "yaml", "yml" -> new YAMLMapper();
-            default -> throw new IllegalArgumentException(
-                    "Unsupported file extension" + fileName);
+            default -> throw new IllegalArgumentException("Unsupported file extension" + fileName);
         };
     }
 }
